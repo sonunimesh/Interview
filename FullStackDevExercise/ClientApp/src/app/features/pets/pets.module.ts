@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/* module routing */
 import { PetsRoutingModule } from './pets-routing.module';
-import { PetListComponent } from './pet-list/pet-list.component';
-import { PetsComponent } from './pets.component';
+
+/* custom shared module */
+import { SharedModule } from './../../shared/shared.module';
 
 
 @NgModule({
-  declarations: [PetListComponent, PetsComponent],
+  declarations: PetsRoutingModule.components,
   imports: [
     CommonModule,
-    PetsRoutingModule
+    PetsRoutingModule,
+    SharedModule
   ]
 })
 export class PetsModule { }

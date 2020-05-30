@@ -22,5 +22,5 @@ const routes: Routes = [
   bootstrap:[PetsComponent]
 })
 export class PetsRoutingModule {
-  
+  static components = [PetsComponent,PetListComponent]
 }

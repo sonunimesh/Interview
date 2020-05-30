@@ -5,21 +5,28 @@ import { CommonModule } from '@angular/common';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset'
 import { CardModule } from 'primeng/card';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 /* end primeng modules */
+
+/* shared project components */
+import { ProgressComponent } from './progress/progress.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ProgressComponent],
   imports: [
     CommonModule,
     PanelModule,
     FieldsetModule,
-    CardModule
+    CardModule,
+    ProgressSpinnerModule
   ],
   exports: [
     PanelModule,
     FieldsetModule,
-    CardModule
+    CardModule,
+    ProgressSpinnerModule,
+    ProgressComponent
   ]
 })
 export class SharedModule { }
