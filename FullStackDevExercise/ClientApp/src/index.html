@@ -1,13 +1,32 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>ClientApp</title>
+  <title>Dr. Dolittle Vet.</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link id="layout-css" rel="stylesheet" type="text/css" href="assets/layout/css/layout-green.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-  <app-root></app-root>
+  <div class="p-grid header-container">
+    <div class="p-col-fixed">
+      <img src="assets/logo.png" style="height:100px;" />
+    </div>
+    <div class="p-col">
+      <p>
+        Welcome to Dr. Dolittle's Veternarian client. We are so happy to take care of all of your pets needs.
+        Contrary to my name, i want to ensure you that we do everything in our power to help your pets
+        Please make an appointment with us today.</p>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <app-root></app-root>
+    </div>
+  </div>
 </body>
+
 </html>
