@@ -39,3 +39,9 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+/MedStudy/bin/Debug
+/MedStudy.Enterprise.Common/bin/Debug
+/MedStudy.Enterprise.Common/obj/Debug
+/MedStudy.IntegrationTest/bin/Debug
+/MedStudy.IntegrationTest/obj/Debug
+/MedStudy.UnitTest/bin/Debug

@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: 'pets', loadChildren: () => import('./features/pets/pets.module').then(m => m.PetsModule)
+    path: 'pets', loadChildren: () => import('./features/pets/pets.module').then(m => m.PetsModule),
+   
+  },
+  {
+    path: 'owners',loadChildren: () => import('./features/owners/owners.module').then(m => m.OwnersModule)
   }
 ];
 

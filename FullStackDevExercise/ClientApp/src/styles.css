@@ -58,4 +58,26 @@
         margin-bottom:20px;
     }
 
+    .card-stacked-container {
+        display:flex;
+        align-content:center;
+        align-items: center;
+        justify-items: center;
+        flex-direction:column;
+        width: inherit;
+        min-width: inherit;
+        max-width: inherit;
+    }
+    
+    
+    .card-stacked-item {
+        flex:1;
+        -ms-flex:1;
+    }
+
+    .container-shadow:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+
   }

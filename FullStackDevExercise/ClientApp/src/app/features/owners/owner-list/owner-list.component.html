@@ -1,0 +1,49 @@
+<p-card>
+    <p-panel header="Owners">
+        <div *ngIf="ownerData$ | async as data else loading">
+            <p-dataView [value]="data" [paginator]="true" [rows]="10" [layout]="'list'">
+                <ng-template let-owner pTemplate="listItem">
+                    <div class="ui-g-12 ui-md-3">
+                        <a href="javascript:null">
+                            <p-card styleClass="container-shadow">
+                                <div class="card-stacked-container" style="flex-direction:row;width:100px">
+                                    <div style="margin-right:10px;">
+                                        <i class="fas fa-user-ninja"></i>
+                                    </div>
+                                    <div class="card-stacked-item">
+                                        {{owner?.first_name}} {{owner?.last_name}}
+                                    </div>
+                                </div>
+                            </p-card>
+                        </a>
+                    </div>
+                </ng-template>
+                <ng-template let-owner pTemplate="gridItem">
+                    <div class="ui-g-12 ui-md-3">
+                        <a href="javascript:null">
+                            <p-card styleClass="container-shadow">
+                                <div class="card-stacked-container">
+                                    <div class="card-stacked-item">
+                                        <i class="fas fa-user-ninja"></i>
+                                    </div>
+                                    <div class="card-stacked-item" style="width:200px">
+                                        {{owner?.first_name}} {{owner?.last_name}}
+                                    </div>
+                                </div>
+                            </p-card>
+                        </a>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </p-panel>
+</p-card>
+<div style="width:100%">
+    <ng-template #loading>
+        <div class="p-grid p-justify-center" style="width:100%">
+            <div class="p-col-12 p-justify-center ">
+               <app-progress></app-progress>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,11 +1,24 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Ninject;
+using Ninject.Activation;
+using System;
+using MedStudy.Infrastructure;
+using System.Threading;
+using System.Runtime.CompilerServices;
+using Ninject.Infrastructure.Disposal;
 
 namespace FullStackDevExercise
 {
   public class Program
   {
+
+   
+
+  
+
     public static void Main(string[] args)
     {
       BootstrapData();
@@ -59,6 +72,8 @@ namespace FullStackDevExercise
       ";
       createTable.ExecuteNonQuery();
     }
+
+    
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)

@@ -1,5 +1,58 @@
 <p-card>
     <p-panel header="Pets">
-  
+        <div *ngIf="petsData$ | async as data else loading">
+            <p-dataView [value]="data" [paginator]="true" [rows]="10" [layout]="'list'">
+                <ng-template let-pet pTemplate="listItem">
+                    <div class="ui-g-12 ui-md-3">
+                        <a href="javascript:null">
+                            <p-card styleClass="container-shadow">
+                                <div class="card-stacked-container" style="flex-direction:column;width:100px">
+                                    <div class="p-grid p-nogutter">
+                                        <div class="p-col-12 p-align-start">
+                                           Name: {{pet?.name}}
+                                        </div>
+                                        <div class="p-col-12 p-align-start">
+                                           Owner: {{pet?.owner_name}}
+                                        </div>
+                                        <div class="p-col-12 p-align-start">
+                                           Type: {{pet?.type}}
+                                        </div>
+                                        <div class="p-col-12 p-align-start">
+                                           Age: {{pet?.age}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </a>
+                    </div>
+                </ng-template>
+                <ng-template let-pet pTemplate="gridItem">
+                    <div class="ui-g-12 ui-md-3">
+                        <a href="javascript:null">
+                            <p-card styleClass="container-shadow">
+                                <div class="card-stacked-container">
+                                    <div class="card-stacked-item">
+                                        <i class="fas fa-briefcase"></i>
+
+                                    </div>
+                                    <div class="card-stacked-item" style="width:200px">
+                                        pet?.name
+                                    </div>
+                                </div>
+                            </p-card>
+                        </a>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
     </p-panel>
 </p-card>
+<div style="width:100%">
+    <ng-template #loading>
+        <div class="p-grid p-justify-center" style="width:100%">
+            <div class="p-col-12 ">
+               <app-progress></app-progress>
+            </div>
+        </div>
+    </ng-template>
+</div>

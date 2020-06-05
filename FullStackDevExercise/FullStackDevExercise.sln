@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedStudy", "..\MedStudy\Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedStudy.UnitTest", "..\MedStudy.UnitTest\MedStudy.UnitTest.csproj", "{78A56232-F6D2-4262-AE63-18400B05E7C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedStudy.IntegrationTest", "..\MedStudy.IntegrationTest\MedStudy.IntegrationTest.csproj", "{6DD0135D-8D70-4C25-9C72-D71A4FA21A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedStudy.Enterprise.Common", "..\MedStudy.Enterprise.Common\MedStudy.Enterprise.Common.csproj", "{B2B72BB2-B838-41C7-AB25-D0201944BA65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +30,14 @@ Global
 		{78A56232-F6D2-4262-AE63-18400B05E7C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A56232-F6D2-4262-AE63-18400B05E7C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A56232-F6D2-4262-AE63-18400B05E7C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD0135D-8D70-4C25-9C72-D71A4FA21A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD0135D-8D70-4C25-9C72-D71A4FA21A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD0135D-8D70-4C25-9C72-D71A4FA21A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD0135D-8D70-4C25-9C72-D71A4FA21A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B72BB2-B838-41C7-AB25-D0201944BA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B72BB2-B838-41C7-AB25-D0201944BA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B72BB2-B838-41C7-AB25-D0201944BA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B72BB2-B838-41C7-AB25-D0201944BA65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
