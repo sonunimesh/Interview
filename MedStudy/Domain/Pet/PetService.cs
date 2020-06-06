@@ -10,6 +10,7 @@ using System.ServiceModel.Channels;
 using Remotion.Linq.Parsing.ExpressionVisitors.Transformation.PredefinedTransformations;
 using MedStudy.Domain.Owner;
 using Microsoft.Data.Sqlite;
+using NHibernate.SqlCommand;
 
 namespace MedStudy.Domain.Pet
 {
@@ -17,6 +18,8 @@ namespace MedStudy.Domain.Pet
   public interface IPetService
   {
     List<PetRetrievalModel> GetPets();
+
+    PetResponseModel GetPetResponse(int? id);
 
     void Save(PetSaveModel model);
   }
@@ -64,8 +67,17 @@ namespace MedStudy.Domain.Pet
       return pets;
     }
 
+    public PetResponseModel GetPetResponse(int? id)
+    {
+      var ownersService = new OwnerService(_connectionString);
+      var response = new PetResponseModel();
+      response.Owners = ownersService.GetOwnersLookup();
+      response.Pet = GetPet(id);
+      return response;
+    }
+
     public void Save(PetSaveModel model)
-    {   
+    {
       /* edit record */
       if (model.id.HasValue)
       {
@@ -75,13 +87,13 @@ namespace MedStudy.Domain.Pet
           var updateRecord = connection.CreateCommand();
           updateRecord.CommandText = $"update pets set owner_id={model.owner_id}," +
             $" type='{model.type}', name='{model.name}', age={model.age}" +
-            $" where id={model.id}";       
+            $" where id={model.id}";
           updateRecord.ExecuteNonQuery();
         }
 
-      } 
+      }
       /* new record */
-      if( !model.id.HasValue)
+      if (!model.id.HasValue)
       {
         using (var connection = new SqliteConnection(_sqliteConnectionStringBuilder.ConnectionString))
         {
@@ -94,7 +106,33 @@ namespace MedStudy.Domain.Pet
       }
     }
 
-    private PetRetrievalModel BuildModelFromReaderRow(SqliteDataReader reader)
+    private PetModel GetPet(int? id)
+    {
+      if (!id.HasValue) return null;
+      using (var connection = new SqliteConnection(_sqliteConnectionStringBuilder.ConnectionString))
+      {
+        connection.Open();
+        var retreiveCommand = connection.CreateCommand();
+        retreiveCommand.CommandText = $"select * from pets where id={id}";
+        var reader = retreiveCommand.ExecuteReader();
+        reader.Read();
+        return BuildPetModelFromReaderRow(reader);
+      }
+    }
+
+    private static PetModel BuildPetModelFromReaderRow(SqliteDataReader reader)
+    {
+      return new PetModel()
+      {
+        id = reader.GetInt16(0),
+        owner_id = reader.GetInt32(1),
+        type = reader.GetString(2),
+        name = reader.GetString(3),
+        age = reader.GetInt32(4)
+      };
+    }
+
+    private static PetRetrievalModel BuildModelFromReaderRow(SqliteDataReader reader)
     {
       return new PetRetrievalModel()
       {
@@ -105,6 +143,7 @@ namespace MedStudy.Domain.Pet
         age = reader.GetInt32(4)
       };
     }
+
 
   }
 

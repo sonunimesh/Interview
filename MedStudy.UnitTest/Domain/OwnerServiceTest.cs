@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedStudy.Domain.Owner;
 
 namespace MedStudy.UnitTest.Domain
 {
@@ -12,9 +13,13 @@ namespace MedStudy.UnitTest.Domain
   {
 
 
-    void ShouldBeAbleToGetAllOwnersBack()
-    {
+    private IOwnerService _ownerService;
 
+    [Test]
+    public void ShouldBeAbleToGetAllOwnersBack()
+    {
+      _ownerService = new OwnerService(string.Empty);
+      
     }
 
 

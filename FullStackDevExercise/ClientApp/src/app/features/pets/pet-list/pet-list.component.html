@@ -1,5 +1,9 @@
 <p-card>
     <p-panel header="Pets">
+        <div style="text-align:right;margin-bottom:2px">
+            <button type="button" label="Add Pet"  (click)="newRecord()"
+            pButton icon="fas fa-plus"></button>
+        </div>
         <div *ngIf="petsData$ | async as data else loading">
             <p-dataView [value]="data" [paginator]="true" [rows]="10" [layout]="'list'">
                 <ng-template let-pet pTemplate="listItem">

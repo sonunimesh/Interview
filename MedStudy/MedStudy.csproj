@@ -412,6 +412,7 @@
     <Compile Include="Domain\Pet\PetSaveModel.cs" />
     <Compile Include="Domain\Pet\PetService.cs" />
     <Compile Include="Infrastructure\MedStudyNinjectHelper.cs" />
+    <Compile Include="Infrastructure\MedStudyNinjectTestModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -41,7 +41,7 @@ namespace MedStudy.Enterprise.Common
 
         public static TResult Do<T, TResult>(Func<T, TResult> func)
         {
-            var parameter = new NamedScopeParameter("Georges.Ioc InCallScope");
+            var parameter = new NamedScopeParameter("MedStudy.Ioc InCallScope");
             using (parameter.Scope)
             using (var proxy = Resolve<DisposeNotifyingProxy<T>>(parameter))
                 return func(proxy.Service);

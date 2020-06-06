@@ -210,6 +210,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MedStudy\MedStudy.csproj">
+      <Project>{dfbd63bd-2a21-4eb1-8aa5-080ceaa161f8}</Project>
+      <Name>MedStudy</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

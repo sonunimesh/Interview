@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 /* rxjs */
 import { Observable } from 'rxjs';
@@ -18,11 +19,16 @@ export class PetListComponent implements OnInit {
   petsData$: Observable<Array<PetRetreivalModel>>;
 
 
-  constructor(private petsService: PetsService) {
+  constructor(private petsService: PetsService,private router: Router) {
     this.petsData$ = this.petsService.getPets();
    }
 
   ngOnInit(): void {
+  }
+
+
+  newRecord = () => {
+    this.router.navigate(['/pets/edit'])
   }
 
 }

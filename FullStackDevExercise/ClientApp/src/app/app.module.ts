@@ -7,9 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 /* app modules */
 import { SharedModule } from './shared/shared.module';
 
-/* primeng menu */
+/* primeng modules */
 import { MenuModule } from 'primeng/menu';
-
+import { ToastModule } from 'primeng/toast';
 
 /* application components */
 import { AppComponent } from './app.component';
@@ -23,7 +23,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    MenuModule
+    MenuModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

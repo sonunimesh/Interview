@@ -26,7 +26,7 @@ namespace MedStudy.IntegrationTest
     private void LoadNinject()
     {
       var kernel = new StandardKernel();
-      
+      kernel.Load(new MedStudyNinjectTestModule());
       Ioc.Initialize(kernel);
     }
   }

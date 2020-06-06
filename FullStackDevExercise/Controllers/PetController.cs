@@ -23,12 +23,27 @@ namespace FullStackDevExercise.Controllers
 
 
     [HttpGet("[action]")]
+    public IActionResult GetPet(int? id)
+    {
+      try
+      {
+        return Ok(_petService.GetPetResponse(id));
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, "There was a problem");
+      }
+    }
+
+
+    [HttpGet("[action]")]
     public IActionResult GetPets()
     {
       try
       {
         return Ok(_petService.GetPets());
-      } catch(Exception ex)
+      }
+      catch (Exception ex)
       {
         return StatusCode(500, "There was a problem collecting your pets");
       }
@@ -42,7 +57,8 @@ namespace FullStackDevExercise.Controllers
       {
         _petService.Save(model);
         return Ok();
-      } catch(Exception ex)
+      }
+      catch (Exception ex)
       {
         return StatusCode(500, "There was a problem saving your record");
       }

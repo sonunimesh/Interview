@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 /* components */
 import { PetListComponent } from './pet-list/pet-list.component';
-import { PetsComponent} from './pets.component';
+import { PetsComponent } from './pets.component';
+import { PetEditComponent } from './pet-edit/pet-edit.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,11 @@ const routes: Routes = [
     component: PetsComponent,
     pathMatch: 'full'
   },
+  {
+    path: 'edit',
+    component: PetEditComponent,
+    pathMatch: 'full'
+  }
 ];
 
 
@@ -19,8 +25,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  bootstrap:[PetsComponent]
+  bootstrap: [PetsComponent]
 })
 export class PetsRoutingModule {
-  static components = [PetsComponent,PetListComponent]
+  static components = [PetsComponent, PetListComponent,PetEditComponent]
 }
