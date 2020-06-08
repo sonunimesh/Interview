@@ -61,7 +61,7 @@ namespace MedStudy.Domain.Owner
         {
           connection.Open();
           var saveRecord = connection.CreateCommand();
-          saveRecord.CommandText = $"update set first_name = '{saveModel.first_name}', last_name = '{saveModel.last_name}' where id = {saveModel.id}";
+          saveRecord.CommandText = $"update owners set first_name = '{saveModel.first_name}', last_name = '{saveModel.last_name}' where id = {saveModel.id}";
           saveRecord.ExecuteNonQuery();
         }
       }
@@ -81,7 +81,7 @@ namespace MedStudy.Domain.Owner
 
     public OwnerModel GetOwner(int? id)
     {
-      if (!id.HasValue) return null;
+      if (id.HasValue && id.Value == 0) return new OwnerModel() { id = 0, first_name = string.Empty, last_name = string.Empty };
       using (var connection = new SqliteConnection(_sqliteConnectionStringBuilder.ConnectionString))
       {
         connection.Open();
@@ -133,12 +133,12 @@ namespace MedStudy.Domain.Owner
 
     private static bool isAnEdit(OwnerSaveModel saveModel)
     {
-      return saveModel.id.HasValue;
+      return saveModel.id.HasValue && saveModel.id.Value > 0;
     }
 
     private static bool isAnInsert(OwnerSaveModel saveModel)
     {
-      return !saveModel.id.HasValue;
+      return saveModel.id.HasValue && saveModel.id.Value == 0;
     }
 
    

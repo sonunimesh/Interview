@@ -15,7 +15,7 @@ namespace MedStudy.Infrastructure
     public static void Setup(IKernel kernel, Func<IContext, object> scopeMethod, string connectionString)
     {
 
-
+      kernel.Bind<ISqliteConnector>().ToMethod(x => new SqliteConnector(connectionString));
       kernel.Bind<IOwnerService>().ToMethod(x => new OwnerService(connectionString));
       kernel.Bind<IPetService>().ToMethod(x => new PetService(connectionString));
 

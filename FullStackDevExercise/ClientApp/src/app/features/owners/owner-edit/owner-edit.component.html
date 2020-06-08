@@ -1,1 +1,57 @@
-<p>owner-edit works!</p>
+<div *ngIf="loading" class="center">
+    <app-progress></app-progress>
+</div>
+<p-panel *ngIf="!loading" header="Owner Information">
+    <p-card>
+        <form [formGroup]="ownerForm">
+            <div class="p-grid p-align-center">
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    <div class="p-grid p-align-center p-nogutter ui-fluid">
+                        <div class="p-col-12">First Name</div>
+                        <div class="p-col-12">
+                            <div class="ui-inputgroup">
+                                <input type="text" class="p-col-12 ui-inputtext ui-corner-all"
+                                     formControlName="first_name"
+                                    tooltipPosition="center" pInputText placeholder="First Name">
+                                <div class="ui-inputgroup-addon" *ngIf="ownerForm.get('first_name').errors">
+                                    <i class="fas fa-exclamation-triangle error-text" pTooltip="Field is required"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="p-grid p-align-center">
+                <div class="p-col-12 p-md-6 p-lg-6">
+                    <div class="p-grid p-align-center p-nogutter ui-fluid">
+                        <div class="p-col-12">Last Name</div>
+                        <div class="p-col-12">
+                            <div class="ui-inputgroup">
+                                <input type="text" class="p-col-12 ui-inputtext ui-corner-all"
+                                     formControlName="last_name"
+                                    tooltipPosition="center" pInputText placeholder="Last Name">
+                                <div class="ui-inputgroup-addon" *ngIf="ownerForm.get('last_name').errors">
+                                    <i class="fas fa-exclamation-triangle error-text" pTooltip="Field is required"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+           
+            <div class="p-grid">
+                <div class="p-col-11 p-md-6 p-lg-6">
+                    <div class="form-buttons">
+                        <button type="button" label="Save" [disabled]="ownerForm.invalid "
+                            (click)="saveRecord()" pButton icon="far fa-save"></button>
+                        <button type="button" label="Cancel" (click)="cancel()" pButton class="ui-button-danger"
+                            icon="pi pi-times"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </p-card>
+</p-panel>

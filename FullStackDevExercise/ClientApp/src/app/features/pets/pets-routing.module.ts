@@ -16,10 +16,13 @@ const routes: Routes = [
     path: 'edit',
     component: PetEditComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'edit/:id',
+    component: PetEditComponent,
+    pathMatch: 'full'
   }
 ];
-
-
 
 
 @NgModule({

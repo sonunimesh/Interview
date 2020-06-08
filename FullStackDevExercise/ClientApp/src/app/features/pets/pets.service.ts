@@ -11,6 +11,7 @@ import { ToastyService } from '../../shared/toasty.service';
 
 /* models */
 import { PetRetreivalModel } from './pet-retreival-model';
+import { PetSaveModel } from './pet-save-model';
 import { PetEditResponseModel } from './pet-edit-response-model';
 import { LookupItem } from './../../core/lookup-item';
 import { PetEditModel } from './pet-edit-model';
@@ -23,7 +24,8 @@ import { PetEditModel } from './pet-edit-model';
 export class PetsService {
 
   static GET_PETS_URL = '/api/pet/getpets';
-  static GET_PET_RESPONSE = '/api/pet/getpet'
+  static GET_PET_RESPONSE = '/api/pet/getpet';
+  static POST_SAVE = '/api/pet/save';
 
   constructor(private httpClient: HttpClient, private toastyService: ToastyService) {
     this.petData$ = this.petData.asObservable();
@@ -41,6 +43,10 @@ export class PetsService {
   /* generally you don't put private/public together like this, it violates */
   /* the angular style guide, it's just kind of my personal preference */
 
+
+  savePet = (saveModel: PetSaveModel ) => {
+    return this.httpClient.post<PetSaveModel>(PetsService.POST_SAVE,saveModel);
+  }
 
   getPet = (id: number) => {
     const petId = id || ''

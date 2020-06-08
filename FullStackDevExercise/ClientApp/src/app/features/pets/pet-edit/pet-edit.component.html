@@ -1,7 +1,7 @@
-<div *ngIf="loading">
+<div *ngIf="loading" class="center">
     <app-progress></app-progress>
 </div>
-<p-panel *ngIf="!loading" heading="Pet Information">
+<p-panel *ngIf="!loading" header="Pet Information">
     <p-card>
         <form [formGroup]="petForm">
             <div class="p-grid p-align-center">
@@ -12,7 +12,7 @@
                             <div class="ui-inputgroup">
                                 <input type="text" class="p-col-12 ui-inputtext ui-corner-all"
                                      formControlName="name"
-                                    tooltipPosition="left" pInputText placeholder="Name">
+                                    tooltipPosition="center" pInputText placeholder="Name">
                                 <div class="ui-inputgroup-addon" *ngIf="petForm.get('name').errors">
                                     <i class="fas fa-exclamation-triangle error-text" pTooltip="Field is required"></i>
                                 </div>
@@ -25,11 +25,11 @@
                 <div class="p-col-12 p-md-6 p-lg-6">
                     <div class="p-grid p-align-center p-nogutter ui-fluid">
                         <div class="p-col-12">Owners</div>
-                        <div class="p-col-12">
+                        <div class="p-col-11">
                             <div class="ui-inputgroup">
                                 <p-dropdown [options]="Owners" placeholder="Select One" optionLabel="label"
                                     optionValue="value" [filter]="true" formControlName="owner"
-                                    pTooltip="Who is the owner" tooltipPosition="left">
+                                    pTooltip="Who is the owner" tooltipPosition="center">
                                 </p-dropdown>
                                 <div class="ui-inputgroup-addon" *ngIf="petForm.get('owner').errors">
                                     <i class="fas fa-exclamation-triangle error-text"></i>
@@ -39,15 +39,15 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="p-grid p-align-center">
+            <div class="p-grid p-align-center">
                 <div class="p-col-12 p-md-6 p-lg-6">
                     <div class="p-grid p-align-center p-nogutter ui-fluid">
                         <div class="p-col-12">Type</div>
                         <div class="p-col-12">
                             <div class="ui-inputgroup">
                                 <input type="text" class="p-col-12 ui-inputtext ui-corner-all"
-                                    pTooltip="Type of pet" formControlName="type" tooltipPosition="left"
-                                    pInputText placeholder="Control Description">
+                                    pTooltip="Type of pet" formControlName="type" tooltipPosition="center"
+                                    pInputText placeholder="Type">
                                 <div class="ui-inputgroup-addon" *ngIf="petForm.get('type').errors">
                                     <i class="fas fa-exclamation-triangle error-text" pTooltip="Type is required"></i>
                                 </div>
@@ -55,15 +55,15 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <!-- <div class="p-grid p-align-center">
+            </div>
+            <div class="p-grid p-align-center">
                 <div class="p-col-12 p-md-6 p-lg-6">
                     <div class="p-grid p-align-center p-nogutter ui-fluid">
                         <div class="p-col-12">Age</div>
                         <div class="p-col-12">
                             <div class="ui-inputgroup">
                                 <input type="text" class="p-col-11 ui-inputtext ui-corner-all"
-                                    formControlName="age" pTooltip="What age is this pet" tooltipPosition="left"
+                                    formControlName="age" pTooltip="What age is this pet" tooltipPosition="center"
                                     pInputText placeholder="Pet Age">
                                 <span class="ui-inputgroup-addon"
                                     *ngIf="petForm.get('age').errors">
@@ -74,18 +74,18 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
            
-            <!-- <div class="p-grid">
+            <div class="p-grid">
                 <div class="p-col-11 p-md-6 p-lg-6">
                     <div class="form-buttons">
-                        <button type="button" label="Save" [disabled]="controlForm.invalid "
+                        <button type="button" label="Save" [disabled]="petForm.invalid "
                             (click)="saveRecord()" pButton icon="far fa-save"></button>
                         <button type="button" label="Cancel" (click)="cancel()" pButton class="ui-button-danger"
                             icon="pi pi-times"></button>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </form>
 
     </p-card>

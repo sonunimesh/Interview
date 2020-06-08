@@ -1,10 +1,13 @@
 <p-card>
     <p-panel header="Owners">
         <div *ngIf="ownerData$ | async as data else loading">
+            <div style="text-align:right;margin-bottom:2px">
+                <button type="button" label="Add Owner" (click)="newOwner()" pButton icon="fas fa-plus"></button>
+            </div>
             <p-dataView [value]="data" [paginator]="true" [rows]="10" [layout]="'list'">
                 <ng-template let-owner pTemplate="listItem">
                     <div class="ui-g-12 ui-md-3">
-                        <a href="javascript:null">
+                        <a href="javascript:null" (click)="editOwner(owner.id)">
                             <p-card styleClass="container-shadow">
                                 <div class="card-stacked-container" style="flex-direction:row;width:100px">
                                     <div style="margin-right:10px;">
@@ -38,12 +41,8 @@
         </div>
     </p-panel>
 </p-card>
-<div style="width:100%">
-    <ng-template #loading>
-        <div class="p-grid p-justify-center" style="width:100%">
-            <div class="p-col-12 p-justify-center ">
-               <app-progress></app-progress>
-            </div>
-        </div>
-    </ng-template>
-</div>
+<ng-template #loading>
+    <div class="center">
+        <app-progress></app-progress>
+    </div>
+</ng-template>

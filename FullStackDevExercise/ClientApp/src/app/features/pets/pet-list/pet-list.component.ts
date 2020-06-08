@@ -26,9 +26,12 @@ export class PetListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  editPet = (id: number) => {
+    this.router.navigate(['/pets/edit',id]);
+  }
 
-  newRecord = () => {
-    this.router.navigate(['/pets/edit'])
+  newPet = () => {
+    this.router.navigate(['/pets/edit']);
   }
 
 }

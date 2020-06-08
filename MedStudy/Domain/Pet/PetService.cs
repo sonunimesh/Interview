@@ -79,7 +79,7 @@ namespace MedStudy.Domain.Pet
     public void Save(PetSaveModel model)
     {
       /* edit record */
-      if (model.id.HasValue)
+      if (model.id.HasValue && model.id.Value > 0)
       {
         using (var connection = new SqliteConnection(_sqliteConnectionStringBuilder.ConnectionString))
         {
@@ -93,7 +93,7 @@ namespace MedStudy.Domain.Pet
 
       }
       /* new record */
-      if (!model.id.HasValue)
+      if (model.id.HasValue && model.id.Value == 0)
       {
         using (var connection = new SqliteConnection(_sqliteConnectionStringBuilder.ConnectionString))
         {
