@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ namespace FullStackDevExercise
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,12 +22,15 @@ namespace FullStackDevExercise
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+        services.AddCors();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.Add(new ServiceDescriptor(typeof(Db), new SqliteDbImplementation()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,10 @@ namespace FullStackDevExercise
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+ app.UseCors(
+        options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()
+
+    );
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -50,6 +59,8 @@ namespace FullStackDevExercise
             }
 
             app.UseRouting();
+
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -68,6 +79,7 @@ namespace FullStackDevExercise
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
+                     spa.Options.StartupTimeout = TimeSpan.FromSeconds(200); // <--
                 }
             });
         }

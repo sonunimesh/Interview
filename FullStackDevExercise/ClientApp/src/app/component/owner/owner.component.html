@@ -1,0 +1,76 @@
+
+<button type="button" class="btn btn-primary" (click)="AddOwner()">
+Add Owner
+</button>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+
+      <th scope="col" class="col-4">First Name</th>
+      <th scope="col" class="col-4">Last Name</th>
+      <th scope="col" class="col-4">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of ownersList">
+
+      <td> {{ item.first_Name }} </td>
+      <td> {{ item.last_Name }} </td>
+      <td>
+        <div class="row">
+          <div class="col-3">
+            <button type="button" class="btn btn-primary" (click)="EditOwner(item)">
+             Edit
+            </button>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-primary" (click)="DeleteOwner(item)">
+             Delete
+            </button>
+          </div>
+        </div>
+         </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="ownerForm"  (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{actionTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label for="First_Name" class="col-form-label">First Name</label>
+            <input type="text" class="form-control" id="First_Name" name="First_Name" formControlName="First_Name" >
+            <span *ngIf="ownerForm.get('First_Name').hasError('required') && !ownerForm.get('First_Name').pristine">
+              Fist Name required
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="Last_Name" class="col-form-label">Last Name</label>
+            <input type="text" class="form-control" id="Last_Name" name="Last_Name" formControlName="Last_Name" >
+            <span class=”lblError” *ngIf="ownerForm.get('Last_Name').hasError('required') && !ownerForm.get('Last_Name').pristine">
+              Last Name is Required
+              </span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  type="submit"  class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

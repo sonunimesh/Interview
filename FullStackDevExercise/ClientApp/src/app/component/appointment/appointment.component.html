@@ -1,0 +1,92 @@
+
+<button type="button" class="btn btn-primary" (click)="AddAppointment()" >
+  Add Appointment
+</button>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+
+      <th scope="col" class="col-3">Date</th>
+      <th scope="col" class="col-3">Time</th>
+
+      <th scope="col" class="col-4">Pet</th>
+      <th scope="col" class="col-2">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of appointmentsList">
+
+      <td> {{ item.date }} </td>
+      <td> {{ item.time }} </td>
+
+      <td> {{ item.name }} </td>
+      <td>
+        <div class="row">
+          <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="EditAppointment(item)">
+             Edit
+            </button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="DeleteAppointment(item)">
+             Delete
+            </button>
+          </div>
+        </div>
+         </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="appoinementForm"  (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{actionTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label for="Date" class="col-form-label"> Date</label>
+            <input type="text" class="form-control" id="Date" name="Date" formControlName="Date" >
+            <span *ngIf="appoinementForm.get('Date').hasError('required') && !appoinementForm.get('Date').pristine">
+              Date required
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="Time" class="col-form-label">Time</label>
+            <input type="text" class="form-control" id="Time" name="Time" formControlName="Time" >
+            <span class=”lblError” *ngIf="appoinementForm.get('Time').hasError('required') && !appoinementForm.get('Time').pristine">
+              Time is Required
+              </span>
+          </div>
+
+          <div class="form-group">
+            <label for="pet_Id" class="col-form-label">Pet</label>
+            <select formControlName="pet_Id" id="pet_Id" name="pet_Id">
+              <option *ngFor="let pet of pets" [value]="pet.Id"
+                >{{pet.name}}</option
+              >
+            </select>
+            <span class=”lblError” *ngIf="appoinementForm.get('pet_Id').hasError('required') && !appoinementForm.get('pet_Id').pristine">
+              pet_Id is Required
+              </span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  type="submit"  class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

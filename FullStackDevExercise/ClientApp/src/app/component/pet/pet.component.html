@@ -1,0 +1,98 @@
+
+<button type="button" class="btn btn-primary" (click)="AddPet()">
+  Add Pet
+</button>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+
+      <th scope="col" class="col-3" >Name</th>
+      <th scope="col" class="col-3">Type</th>
+      <th scope="col" class="col-1">Age</th>
+      <th scope="col" class="col-2">Owner</th>
+      <th scope="col" class="col-3">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of petsList">
+
+      <td> {{ item.name }} </td>
+      <td> {{ item.type }} </td>
+      <td> {{ item.age }} </td>
+      <td> {{ item.first_name }} </td>
+      <td>
+        <div class="row">
+          <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="EditPet(item)">
+             Edit
+            </button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="DeletePet(item)">
+             Delete
+            </button>
+          </div>
+        </div>
+         </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="petForm"  (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{actionTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label for="Name" class="col-form-label"> Name</label>
+            <input type="text" class="form-control" id="Name" name="Name" formControlName="Name" >
+            <span *ngIf="petForm.get('Name').hasError('required') && !petForm.get('Name').pristine">
+               Name required
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="Type" class="col-form-label">Type</label>
+            <input type="text" class="form-control" id="Type" name="Type" formControlName="Type" >
+            <span class=”lblError” *ngIf="petForm.get('Type').hasError('required') && !petForm.get('Type').pristine">
+              Type is Required
+              </span>
+          </div>
+          <div class="form-group">
+            <label for="Age" class="col-form-label">Age</label>
+            <input type="text" class="form-control" id="Age" name="Age" formControlName="Age" >
+            <span class=”lblError” *ngIf="petForm.get('Age').hasError('required') && !petForm.get('Age').pristine">
+              Age is Required
+              </span>
+          </div>
+          <div class="form-group">
+            <label for="Owner_Id" class="col-form-label">Owner</label>
+            <select formControlName="Owner_Id" id="Owner_Id" name="Owner_Id">
+              <option *ngFor="let owner of owners" [value]="owner.id"
+                >{{owner.first_Name}}</option
+              >
+            </select>
+            <span class=”lblError” *ngIf="petForm.get('Owner_Id').hasError('required') && !petForm.get('Owner_Id').pristine">
+              Owner_Id is Required
+              </span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  type="submit"  class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
